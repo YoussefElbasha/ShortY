@@ -9,6 +9,15 @@ const nextConfig = {
 
 		return config
 	},
+	async redirects() {
+		return [
+			{
+				source: '/:code',
+				destination: `${process.env.NEXT_PUBLIC_BACKEND_URL}/:code`,
+				permanent: false,
+			},
+		]
+	},
 }
 
 module.exports = nextConfig

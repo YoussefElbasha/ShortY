@@ -5,10 +5,25 @@ import generateShortUrl from '../lib/generate-short-url'
 const postUrl = async (req: Request, res: Response) => {
   try {
 
-    const url = req.body.url
+    const url = req.body.url.replace(' ', '')
     const prisma = new PrismaClient()
     let shortUrl = ''
     let flag = false
+
+    new URL(url)
+
+    const checkIfUrlExists = await prisma.url.findFirst({
+      where: {
+        originalURl: url
+      },
+      select: {
+        shortenedUrl: true
+      }
+    })
+
+    if (checkIfUrlExists?.shortenedUrl) {
+      return res.status(200).json({ "shortUrl": `${process.env.BACKEND_URL}/${checkIfUrlExists?.shortenedUrl}` })
+    }
 
     do {
 
@@ -33,7 +48,7 @@ const postUrl = async (req: Request, res: Response) => {
       }
     })
 
-    return res.status(200).json({ "shortUrl": `Shorty.com/${shortUrl}` })
+    return res.status(200).json({ "shortUrl": `${process.env.BACKEND_URL}/${shortUrl}` })
   } catch (e: any) {
     return res.status(500).json({ message: e.message })
   }
