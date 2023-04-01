@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: hidden;
 }
 
 .ShortYTitleText {
@@ -28,7 +29,6 @@
 	border-radius: 10px;
 	justify-content: space-between;
 	align-items: center;
-	/* border: ; */
 	gap: 5px;
 	padding: 3px;
 	padding-left: 12px;
@@ -102,4 +102,12 @@
 	);
 
 	border-radius: 5px;
+}
+
+.linkList {
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	padding: 0%;
+	gap: 0.5em;
 }

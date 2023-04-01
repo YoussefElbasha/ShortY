@@ -1,19 +1,52 @@
 import styles from '../styles/main.module.css'
 import LinkIcon from '../icons/link-sharp.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import LinkCard from '@/components/LinkCard'
+
+interface link {
+	shortUrl: string
+	originalUrl: string
+}
 
 export default function Home() {
 	const [color, setColor] = useState(false)
 	const [url, setUrl] = useState('')
+	const [links, setLinks] = useState<link[]>([])
+
+	useEffect(() => {
+		setLinks(JSON.parse(localStorage.getItem('links') || '[]'))
+	}, [])
+
+	useEffect(() => {
+		if (links.length != 0) {
+			localStorage.setItem('links', JSON.stringify(links))
+		}
+	}, [links])
 
 	const shortenMutation = useMutation({
 		mutationFn: ({ url }: { url: string }) => {
 			return axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/`, { url: url })
 		},
-		onSuccess: (res) => console.log(res),
+		onSuccess: (res) => {
+			const newLink = {
+				shortUrl: res.data.shortUrl,
+				originalUrl: res.data.originalUrl,
+			}
+
+			if (!links.find((link) => link.shortUrl === newLink.shortUrl)) {
+				setLinks([newLink, ...links])
+			} else {
+				setLinks((prevState) => {
+					const tempLinks = prevState.filter(
+						(link) => link.shortUrl != newLink.shortUrl
+					)
+					return [newLink, ...tempLinks]
+				})
+			}
+		},
 		onError: (error: any) => {
 			toast.error(`${error.response.data.message}`)
 		},
@@ -55,6 +88,15 @@ export default function Home() {
 					<p>Shortify✨</p>
 				</button>
 			</div>
+			<ul className={styles.linkList}>
+				{links.map((link) => (
+					<LinkCard
+						key={link.shortUrl}
+						shortUrl={link.shortUrl}
+						originalUrl={link.originalUrl}
+					></LinkCard>
+				))}
+			</ul>
 		</div>
 	)
 }

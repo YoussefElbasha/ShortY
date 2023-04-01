@@ -1,0 +1,28 @@
+.linkCard {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	padding: 3px;
+	width: 675px;
+	height: 73px;
+	background-color: white;
+	border: 3px solid black;
+}
+
+.textDiv {
+	flex-grow: 1;
+	display: 'flex';
+	flex-direction: 'column';
+}
+
+.copyLogo {
+	width: 52px;
+	height: 49px;
+	color: grey;
+}
+
+.websiteLogo {
+	width: 40px;
+	height: 40px;
+	position: relative;
+}
