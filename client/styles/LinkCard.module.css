@@ -4,7 +4,6 @@
 	gap: 5px;
 	padding: 3px;
 	width: 675px;
-	height: 73px;
 	background-color: white;
 	border: 3px solid black;
 }
@@ -15,7 +14,13 @@
 	flex-direction: 'column';
 }
 
-.copyLogo {
+.copyIcon {
+	width: 52px;
+	height: 49px;
+	color: grey;
+}
+
+.deleteIcon {
 	width: 52px;
 	height: 49px;
 	color: grey;

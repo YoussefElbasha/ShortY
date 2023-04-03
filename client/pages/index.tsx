@@ -8,6 +8,7 @@ import LinkCard from '@/components/LinkCard'
 
 interface link {
 	shortUrl: string
+	shortUrlCode: string
 	originalUrl: string
 }
 
@@ -21,9 +22,7 @@ export default function Home() {
 	}, [])
 
 	useEffect(() => {
-		if (links.length != 0) {
-			localStorage.setItem('links', JSON.stringify(links))
-		}
+		localStorage.setItem('links', JSON.stringify(links))
 	}, [links])
 
 	const shortenMutation = useMutation({
@@ -33,6 +32,7 @@ export default function Home() {
 		onSuccess: (res) => {
 			const newLink = {
 				shortUrl: res.data.shortUrl,
+				shortUrlCode: res.data.shortUrlCode,
 				originalUrl: res.data.originalUrl,
 			}
 
@@ -46,6 +46,26 @@ export default function Home() {
 					return [newLink, ...tempLinks]
 				})
 			}
+
+			setUrl('')
+		},
+		onError: (error: any) => {
+			toast.error(`${error.response.data.message}`)
+		},
+	})
+
+	const deleteMutation = useMutation({
+		mutationFn: ({ shortUrlCode }: { shortUrlCode: string }) =>
+			axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${shortUrlCode}`),
+		retry: 0,
+		onSuccess: async (res) => {
+			toast.success(`data successfully deleted`)
+			setLinks((prevState) => {
+				const tempLinks = prevState.filter(
+					(link) => link.shortUrlCode != res.data.shortUrlCode
+				)
+				return tempLinks
+			})
 		},
 		onError: (error: any) => {
 			toast.error(`${error.response.data.message}`)
@@ -75,12 +95,13 @@ export default function Home() {
 					id="Enter Link"
 					placeholder="Enter Link Here"
 					onChange={(e: any) => setUrl(e.target.value)}
+					value={url}
 				></input>
 				<button
 					type="submit"
 					className={styles.ShortifyButton}
 					disabled={shortenMutation.isLoading}
-					onClick={(e: any) => {
+					onClick={() => {
 						shortenMutation.mutate({ url: url })
 					}}
 				>
@@ -94,6 +115,9 @@ export default function Home() {
 						key={link.shortUrl}
 						shortUrl={link.shortUrl}
 						originalUrl={link.originalUrl}
+						deleteFn={() =>
+							deleteMutation.mutate({ shortUrlCode: link.shortUrlCode })
+						}
 					></LinkCard>
 				))}
 			</ul>

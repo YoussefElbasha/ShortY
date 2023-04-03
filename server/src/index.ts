@@ -5,6 +5,7 @@ import * as bodyParser from 'body-parser'
 import getUrlShortener from './controllers/get-url-shortener'
 import postUrl from './controllers/post-url'
 import redirect from './controllers/redirect'
+import deleteUrl from './controllers/delete-url'
 
 dotenv.config()
 const app = express()
@@ -17,6 +18,7 @@ app.use(cors())
 app.post('/', postUrl)
 app.get('/', getUrlShortener)
 app.get('/:shortUrl', redirect)
+app.delete('/:shortUrl', deleteUrl)
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}: http://localhost:${port}`)

@@ -1,5 +1,6 @@
 import styles from '../styles/LinkCard.module.css'
 import CopyIcon from '../icons/clipboard-outline.svg'
+import DeleteIcon from '../icons/trash-outline.svg'
 import { FC } from 'react'
 import { parseFavicon } from 'parse-favicon'
 import Image from 'next/image'
@@ -7,9 +8,10 @@ import Image from 'next/image'
 interface props {
 	shortUrl: string
 	originalUrl: string
+	deleteFn: () => void
 }
 
-const LinkCard: FC<props> = ({ shortUrl, originalUrl }) => {
+const LinkCard: FC<props> = ({ shortUrl, originalUrl, deleteFn }) => {
 	const copyText = (text: string) => {
 		navigator.clipboard.writeText(text)
 	}
@@ -27,8 +29,11 @@ const LinkCard: FC<props> = ({ shortUrl, originalUrl }) => {
 				<div>{shortUrl}</div>
 				<div>{originalUrl}</div>
 			</div>
+			<button onClick={deleteFn}>
+				<DeleteIcon className={styles.deleteIcon} />
+			</button>
 			<button onClick={() => copyText(shortUrl)}>
-				<CopyIcon className={styles.copyLogo} />
+				<CopyIcon className={styles.copyIcon} />
 			</button>
 		</li>
 	)

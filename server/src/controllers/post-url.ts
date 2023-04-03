@@ -22,7 +22,7 @@ const postUrl = async (req: Request, res: Response) => {
     })
 
     if (checkIfUrlExists?.shortenedUrl) {
-      return res.status(200).json({ "shortUrl": `${process.env.FRONTEND_URL}/${checkIfUrlExists?.shortenedUrl}`, "originalUrl": `${url}` })
+      return res.status(200).json({ "shortUrl": `${process.env.FRONTEND_URL}/${checkIfUrlExists?.shortenedUrl}`, "originalUrl": `${url}`, "shortUrlCode": `${checkIfUrlExists?.shortenedUrl}` })
     }
 
     do {
@@ -48,7 +48,7 @@ const postUrl = async (req: Request, res: Response) => {
       }
     })
 
-    return res.status(200).json({ "shortUrl": `${process.env.FRONTEND_URL}/${shortUrl}`, "originalUrl": `${url}` })
+    return res.status(200).json({ "shortUrl": `${process.env.FRONTEND_URL}/${shortUrl}`, "originalUrl": `${url}`, "shortUrlCode": `${shortUrl}` })
   } catch (e: any) {
     return res.status(500).json({ message: e.message })
   }
