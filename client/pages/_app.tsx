@@ -9,7 +9,10 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Component {...pageProps} />
-			<Toaster position="bottom-center" />
+			<Toaster
+				position="top-center"
+				toastOptions={{ style: { fontFamily: 'Inter' } }}
+			/>
 		</QueryClientProvider>
 	)
 }

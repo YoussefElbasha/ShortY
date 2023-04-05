@@ -1,33 +1,100 @@
 .linkCard {
 	display: flex;
 	flex-direction: row;
+	align-content: center;
+	align-items: center;
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
 	gap: 5px;
 	padding: 3px;
-	width: 675px;
+	padding-right: 6px;
+	padding-left: 6px;
+	width: 35em;
+	height: 3.5em;
 	background-color: white;
-	border: 3px solid black;
+	box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.1);
+	outline: 2px solid rgba(0, 0, 0, 0.23);
+	border-radius: 10px;
+}
+
+.websiteLogo {
+	min-width: 30px;
+	min-height: 30px;
+	position: relative;
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
 }
 
 .textDiv {
 	flex-grow: 1;
-	display: 'flex';
-	flex-direction: 'column';
+	width: 75%;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin: 4px;
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
 }
 
-.copyIcon {
-	width: 52px;
-	height: 49px;
-	color: grey;
+.originalUrlDiv {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	color: rgb(107 114 128);
+}
+
+.deleteButton {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	background-color: rgb(243 244 246);
+	border-radius: 10px;
+	border-width: 0em;
+	padding: 0.5em;
+	transition: all 175ms ease-in-out;
+	cursor: pointer;
+}
+
+.deleteButton:hover {
+	background-color: rgb(248, 209, 209);
+	transform: scale(1.1);
 }
 
 .deleteIcon {
-	width: 52px;
-	height: 49px;
-	color: grey;
+	width: 2em;
+	color: rgb(55 65 81);
+	transition: color 175ms;
 }
 
-.websiteLogo {
-	width: 40px;
-	height: 40px;
-	position: relative;
+.deleteButton:hover .deleteIcon {
+	color: rgb(248, 83, 83);
+}
+
+.copyButton {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	background-color: rgb(243 244 246);
+	border-radius: 10px;
+	border-width: 0em;
+	padding: 0.5em;
+	transition: all 175ms ease-in-out;
+	cursor: pointer;
+}
+
+.copyButton:hover {
+	background-color: rgb(219 234 254);
+	transform: scale(1.1);
+}
+
+.copyIcon {
+	width: 2em;
+	color: rgb(55 65 81);
+	transition: color 175ms;
+}
+
+.copyButton:hover .copyIcon {
+	color: rgb(57, 123, 210);
 }

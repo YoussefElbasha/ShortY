@@ -4,6 +4,7 @@ import DeleteIcon from '../icons/trash-outline.svg'
 import { FC } from 'react'
 import { parseFavicon } from 'parse-favicon'
 import Image from 'next/image'
+import toast from 'react-hot-toast'
 
 interface props {
 	shortUrl: string
@@ -14,6 +15,7 @@ interface props {
 const LinkCard: FC<props> = ({ shortUrl, originalUrl, deleteFn }) => {
 	const copyText = (text: string) => {
 		navigator.clipboard.writeText(text)
+		toast.success('copied to clipboard')
 	}
 
 	return (
@@ -26,13 +28,15 @@ const LinkCard: FC<props> = ({ shortUrl, originalUrl, deleteFn }) => {
 				/>
 			</div>
 			<div className={styles.textDiv}>
-				<div>{shortUrl}</div>
-				<div>{originalUrl}</div>
+				<div style={{ color: 'rgb(30 64 175)', fontWeight: 700 }}>
+					{shortUrl.replace(/^https?:\/\//, '')}
+				</div>
+				<div className={styles.originalUrlDiv}>{originalUrl}</div>
 			</div>
-			<button onClick={deleteFn}>
+			<button className={styles.deleteButton} onClick={deleteFn}>
 				<DeleteIcon className={styles.deleteIcon} />
 			</button>
-			<button onClick={() => copyText(shortUrl)}>
+			<button className={styles.copyButton} onClick={() => copyText(shortUrl)}>
 				<CopyIcon className={styles.copyIcon} />
 			</button>
 		</li>
