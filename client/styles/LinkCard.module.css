@@ -1,3 +1,14 @@
+@keyframes link-animation {
+	0% {
+		transform: scale(0.5);
+		/* , translateX(-100%); */
+	}
+	100% {
+		transform: scale(1);
+		/* , translateX(0%); */
+	}
+}
+
 .linkCard {
 	display: flex;
 	flex-direction: row;
@@ -15,6 +26,12 @@
 	box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.1);
 	outline: 2px solid rgba(0, 0, 0, 0.23);
 	border-radius: 10px;
+	transition: all 175ms ease-in-out, transform 150ms ease-in-out;
+	/* animation: link-animation 0.5s forwards ease-in-out; */
+}
+
+.linkCard:hover {
+	outline-color: black;
 }
 
 .websiteLogo {

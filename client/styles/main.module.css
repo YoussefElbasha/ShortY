@@ -2,6 +2,35 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-color: hsla(60, 24%, 94%, 1);
+	background-image: radial-gradient(
+			at 93% 77%,
+			hsla(266, 100%, 72%, 0.4) 0px,
+			transparent 50%
+		),
+		radial-gradient(at 21% 77%, hsla(229, 100%, 72%, 0.26) 0px, transparent 50%),
+		radial-gradient(at 14% 15%, hsla(299, 100%, 82%, 0.14) 0px, transparent 50%),
+		radial-gradient(at 57% 57%, hsla(191, 100%, 70%, 0) 0px, transparent 50%),
+		radial-gradient(at 94% 8%, hsla(145, 100%, 77%, 0.29) 0px, transparent 50%);
+	min-height: 100vh;
+}
+
+@keyframes bg-animation {
+	0% {
+		background-position: left;
+	}
+	100% {
+		background-position: right;
+	}
+}
+
+@keyframes bg-animation-reverse {
+	0% {
+		background-position: right;
+	}
+	100% {
+		background-position: left;
+	}
 }
 
 .ShortYTitleText {
@@ -21,8 +50,11 @@
 	background-clip: text;
 	text-fill-color: transparent;
 
-	margin-top: 0.25em;
+	margin-top: 0.6em;
 	margin-bottom: 0.25em;
+
+	background-size: 300%;
+	animation: bg-animation 10s infinite alternate;
 }
 
 .URLinput {
@@ -38,6 +70,7 @@
 	height: 73px;
 	transition: outline-color 200ms;
 	outline: 2px solid rgba(0, 0, 0, 0.23);
+	background-color: white;
 }
 
 .linkLogo {
@@ -107,6 +140,18 @@
 	);
 
 	border-radius: 5px;
+	background-size: 350%;
+
+	animation: bg-animation-reverse 1s forwards;
+	transition: all 175ms ease-in-out;
+}
+
+.ShortifyButton:hover .ShortifyButtonBackground {
+	animation: bg-animation 1s forwards;
+}
+
+.ShortifyButton:active {
+	transform: scale(0.95);
 }
 
 .linkList {

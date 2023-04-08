@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import LinkCard from '@/components/LinkCard'
+import Head from 'next/head'
 
 interface link {
 	shortUrl: string
@@ -13,8 +14,8 @@ interface link {
 }
 
 export default function Home() {
-	const [color, setColor] = useState(false)
-	const [url, setUrl] = useState('')
+	const [color, setColor] = useState<boolean>(false)
+	const [url, setUrl] = useState<string>('')
 	const [links, setLinks] = useState<link[]>([])
 
 	useEffect(() => {
@@ -74,6 +75,9 @@ export default function Home() {
 
 	return (
 		<div className={styles.mainDiv}>
+			<Head>
+				<title>ShortY</title>
+			</Head>
 			<h1 className={styles.ShortYTitleText}>
 				ShortY
 				<br />
@@ -110,7 +114,7 @@ export default function Home() {
 				</button>
 			</div>
 			<ul className={styles.linkList}>
-				{links.map((link) => (
+				{links.map((link, index) => (
 					<LinkCard
 						key={link.shortUrl}
 						shortUrl={link.shortUrl}
