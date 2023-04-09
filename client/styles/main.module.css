@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: relative;
 	background-color: hsla(60, 24%, 94%, 1);
 	background-image: radial-gradient(
 			at 93% 77%,
@@ -39,6 +40,8 @@
 	font-size: 4.5rem;
 	font-weight: 700;
 
+	/* filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.138)); */
+
 	background: linear-gradient(
 		69.57deg,
 		#5433ff 7.06%,
@@ -50,7 +53,7 @@
 	background-clip: text;
 	text-fill-color: transparent;
 
-	margin-top: 0.6em;
+	margin-top: 0.7em;
 	margin-bottom: 0.25em;
 
 	background-size: 300%;
@@ -160,4 +163,99 @@
 	list-style-type: none;
 	padding: 0%;
 	gap: 0.6em;
+}
+
+.credits {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-items: center;
+	gap: 0.5em;
+	position: fixed;
+	right: 1.5em;
+	bottom: 1em;
+}
+
+.creditsLink {
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
+	text-decoration: none;
+	color: rgb(97, 96, 96);
+}
+
+.gitHubLink {
+	position: relative;
+	width: 3em;
+	height: 3em;
+	background-color: black;
+	border-radius: 25%;
+	z-index: -1;
+}
+
+@keyframes github-not-hover {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.gitHubLink:not(:hover) .gitHubLogo {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.gitHubLink:hover .gitHubLogo {
+	transform: translate(-50%, -50%) scale(0);
+}
+
+.gitHubLogo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	width: 2.8em;
+	fill: white;
+	transition: transform 200ms ease-in-out;
+}
+
+.gitHubLink:hover .starLogo {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.gitHubLink:not(:hover) .starLogo {
+	transform: translate(-50%, -50%) scale(0);
+}
+
+.gitHubLink:active .starLogo {
+	transform: translate(-50%, -50%) scale(0.5);
+}
+
+.starLogo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	width: 2.5em;
+	color: yellow;
+	transition: transform 200ms ease-in-out;
+}
+
+.gitHubLink:hover .filledStarLogo {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.gitHubLink:not(:hover) .filledStarLogo {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.filledStarLogo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.5);
+	width: 2.5em;
+	fill: yellow;
+	color: yellow;
+	transition: transform 200ms ease-in-out;
 }

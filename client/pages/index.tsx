@@ -6,6 +6,10 @@ import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import LinkCard from '@/components/LinkCard'
 import Head from 'next/head'
+import Link from 'next/link'
+import GithubLogo from '../icons/logo-github.svg'
+import StarLogo from '../icons/star-outline.svg'
+import FilledStarLogo from '../icons/star.svg'
 
 interface link {
 	shortUrl: string
@@ -17,6 +21,10 @@ export default function Home() {
 	const [color, setColor] = useState<boolean>(false)
 	const [url, setUrl] = useState<string>('')
 	const [links, setLinks] = useState<link[]>([])
+	const [currentLogo, setCurrenLogo] = useState(
+		<GithubLogo className={styles.gitHubLogo} />
+	)
+	const [logoHelper, setLogoHelper] = useState(false)
 
 	useEffect(() => {
 		setLinks(JSON.parse(localStorage.getItem('links') || '[]'))
@@ -126,6 +134,49 @@ export default function Home() {
 					></LinkCard>
 				))}
 			</ul>
+			<div className={styles.credits}>
+				<Link
+					className={styles.creditsLink}
+					href="https://github.com/YoussefElbasha"
+					target="_blank"
+				>
+					@YoussefElbasha
+				</Link>
+				<Link
+					className={styles.gitHubLink}
+					target="_top"
+					href="https://github.com/YoussefElbasha/ShortY"
+					onMouseEnter={() =>
+						!logoHelper
+							? setTimeout(
+									() => setCurrenLogo(<StarLogo className={styles.starLogo} />),
+									200
+							  )
+							: {}
+					}
+					onMouseLeave={() =>
+						!logoHelper
+							? setTimeout(
+									() =>
+										setCurrenLogo(<GithubLogo className={styles.gitHubLogo} />),
+									200
+							  )
+							: {}
+					}
+					onClick={() => {
+						setLogoHelper(true)
+						setTimeout(
+							() =>
+								setCurrenLogo(
+									<FilledStarLogo className={styles.filledStarLogo} />
+								),
+							200
+						)
+					}}
+				>
+					{currentLogo}
+				</Link>
+			</div>
 		</div>
 	)
 }

@@ -51,7 +51,7 @@ const LinkCard: FC<props> = ({
 		>
 			<div className={styles.websiteLogo}>
 				<Image
-					src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${originalUrl}`}
+					src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${originalUrl}&size=64`}
 					alt={`${new URL(originalUrl).hostname}`}
 					fill
 				/>

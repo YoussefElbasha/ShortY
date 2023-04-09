@@ -22,7 +22,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 't2.gstatic.com',
+				hostname: 't1.gstatic.com',
 				port: '',
 				pathname: '/*',
 			},
