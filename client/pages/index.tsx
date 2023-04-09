@@ -122,6 +122,7 @@ export default function Home() {
 						deleteFn={() =>
 							deleteMutation.mutate({ shortUrlCode: link.shortUrlCode })
 						}
+						animationDelay={index * 0.1}
 					></LinkCard>
 				))}
 			</ul>

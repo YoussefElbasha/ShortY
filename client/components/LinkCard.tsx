@@ -2,7 +2,7 @@ import styles from '../styles/LinkCard.module.css'
 import CopyIcon from '../icons/clipboard-outline.svg'
 import DeleteIcon from '../icons/trash-outline.svg'
 import CheckIcon from '../icons/checkmark-outline.svg'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 
@@ -10,21 +10,44 @@ interface props {
 	shortUrl: string
 	originalUrl: string
 	deleteFn: () => void
+	animationDelay: number
 }
 
-const LinkCard: FC<props> = ({ shortUrl, originalUrl, deleteFn }) => {
+const LinkCard: FC<props> = ({
+	shortUrl,
+	originalUrl,
+	deleteFn,
+	animationDelay,
+}) => {
 	const [copy, setCopy] = useState<boolean>(false)
 	const [enlarge, setEnlarge] = useState<boolean>(false)
+	const [initialRender, SetInitialRender] = useState<boolean>(true)
 
 	const copyText = (text: string) => {
 		navigator.clipboard.writeText(text)
 		// toast.success('copied to clipboard')
 	}
 
+	useEffect(() => {
+		setTimeout(() => SetInitialRender(false), animationDelay * 1000 + 500)
+	}, [])
+
 	return (
 		<li
-			className={styles.linkCard}
-			style={enlarge ? { transform: 'scale(1.03)' } : {}}
+			className={
+				initialRender
+					? `${styles.linkCard} ${styles.animation}`
+					: `${styles.linkCard} ${styles.opacity}`
+			}
+			style={
+				enlarge
+					? {
+							transform: 'scale(1.032)',
+					  }
+					: {
+							animationDelay: `${animationDelay}s`,
+					  }
+			}
 		>
 			<div className={styles.websiteLogo}>
 				<Image
