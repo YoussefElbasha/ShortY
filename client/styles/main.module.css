@@ -12,7 +12,7 @@
 		radial-gradient(at 21% 77%, hsla(229, 100%, 72%, 0.26) 0px, transparent 50%),
 		radial-gradient(at 14% 15%, hsla(299, 100%, 82%, 0.14) 0px, transparent 50%),
 		radial-gradient(at 57% 57%, hsla(191, 100%, 70%, 0) 0px, transparent 50%),
-		radial-gradient(at 94% 8%, hsla(145, 100%, 77%, 0.29) 0px, transparent 50%);
+		radial-gradient(at 94% 8%, hsla(145, 100%, 77%, 0.16) 0px, transparent 50%);
 	min-height: 100vh;
 }
 
@@ -46,7 +46,7 @@
 		69.57deg,
 		#5433ff 7.06%,
 		#20bdff 42.61%,
-		#8dffbe 78.16%
+		#61eb9d 78.16%
 	);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -237,7 +237,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
 	width: 2.5em;
-	color: yellow;
+	color: white;
 	transition: transform 200ms ease-in-out;
 }
 
@@ -255,7 +255,6 @@
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0.5);
 	width: 2.5em;
-	fill: yellow;
-	color: yellow;
+	fill: #f0d612;
 	transition: transform 200ms ease-in-out;
 }

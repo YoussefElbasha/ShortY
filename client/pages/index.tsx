@@ -144,7 +144,7 @@ export default function Home() {
 				</Link>
 				<Link
 					className={styles.gitHubLink}
-					target="_top"
+					target="_target"
 					href="https://github.com/YoussefElbasha/ShortY"
 					onMouseEnter={() =>
 						!logoHelper
