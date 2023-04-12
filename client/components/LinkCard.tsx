@@ -63,6 +63,7 @@ const LinkCard: FC<props> = ({
 				<div className={styles.originalUrlDiv}>{originalUrl}</div>
 			</div>
 			<button
+				aria-label={`delete ${new URL(originalUrl).hostname} link`}
 				className={styles.deleteButton}
 				onClick={() => {
 					setEnlarge(true)
@@ -73,6 +74,7 @@ const LinkCard: FC<props> = ({
 				<DeleteIcon className={styles.deleteIcon} />
 			</button>
 			<button
+				aria-label={`copy ${new URL(originalUrl).hostname} link`}
 				className={styles.copyButton}
 				onClick={() => {
 					setCopy(true)

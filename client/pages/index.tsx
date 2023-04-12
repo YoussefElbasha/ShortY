@@ -10,6 +10,9 @@ import Link from 'next/link'
 import GithubLogo from '../icons/logo-github.svg'
 import StarLogo from '../icons/star-outline.svg'
 import FilledStarLogo from '../icons/star.svg'
+import { NextSeo } from 'next-seo'
+import Image from 'next/image'
+import { title } from 'process'
 
 interface link {
 	shortUrl: string
@@ -83,9 +86,24 @@ export default function Home() {
 
 	return (
 		<div className={styles.mainDiv}>
-			<Head>
-				<title>ShortY</title>
-			</Head>
+			<NextSeo
+				title="ShortY"
+				description="Url Shortener"
+				openGraph={{
+					type: 'website',
+					url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}`,
+					title: 'ShortY',
+					description: 'Url Shortener',
+					images: [
+						{
+							url: '/static/favicon.jpg',
+							width: 800,
+							height: 600,
+							alt: 'Og Image Alt',
+						},
+					],
+				}}
+			/>
 			<h1 className={styles.ShortYTitleText}>
 				ShortY
 				<br />
