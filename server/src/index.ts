@@ -24,3 +24,4 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}: http://localhost:${port}`)
 })
 
+export default app
