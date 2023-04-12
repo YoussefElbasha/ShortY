@@ -154,6 +154,7 @@ export default function Home() {
 			</ul>
 			<div className={styles.credits}>
 				<Link
+					aria-label="Author's github page"
 					className={styles.creditsLink}
 					href="https://github.com/YoussefElbasha"
 					target="_blank"
@@ -161,6 +162,7 @@ export default function Home() {
 					@YoussefElbasha
 				</Link>
 				<Link
+					aria-label="project's github repository"
 					className={styles.gitHubLink}
 					target="_target"
 					href="https://github.com/YoussefElbasha/ShortY"
