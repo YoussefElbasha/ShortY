@@ -26,7 +26,7 @@ This project is a simple student-made Url Shortener to learn and showcase skills
 
 ## Built With
 
-The ShortY project uses the Express.js and TypeScript for the back-end, while the front-end is built using Next.js and TypeScript. The database is managed using Prisma and is hosted on MongoDB.
+The ShortY project uses Express.js and TypeScript for the back-end, while the front-end is built using Next.js and TypeScript. The database is managed using Prisma and is hosted on MongoDB.
 
 ## Authors
 
